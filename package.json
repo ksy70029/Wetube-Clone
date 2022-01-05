@@ -17,6 +17,7 @@
   "homepage": "https://github.com/ksy70029/Wetube-Clone#readme",
   "dependencies": {
     "express": "^4.17.2",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
