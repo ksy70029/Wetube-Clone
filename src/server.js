@@ -6,17 +6,17 @@ import videoRouter from "./routers/videoRouter";
 
 const PORT = 4000;
 
-// create application 
+console.log(process.cwd());
+
 const app = express();
 const logger = morgan("dev");
-app.use(logger);
 
-//create application to start server and to use routers
+app.set("view engine", "pug");
+app.use(logger);
 app.use("/", globalRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
 
-// listen to external connection (외부접속)
 const handleListening = () => console.log(`✅ Server listening on port http://localhost:${PORT} 🚀`);
 
 app.listen(PORT, handleListening);
