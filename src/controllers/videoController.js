@@ -4,12 +4,8 @@ import Video from "../models/Video";
 // Video.find({}, (error, videos) => {});
 
 export const home = async(req, res) => {
-  try{
-    const videos = await Video.find({});
-    return res.render("home", {pageTitle:"Home", videos });
-  } catch(error) {
-    return res.render("server-error", {error});
-  }
+  const videos = await Video.find({});
+  return res.render("home", {pageTitle:"Home", videos });
 };
 export const see = (req, res) => {
   const {id} = req.params;
