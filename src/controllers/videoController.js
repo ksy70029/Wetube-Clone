@@ -47,8 +47,8 @@ export const postUpload = async (req, res) => {
     await Video.create ({
       title,
       description,
-      hashtags: hashtags.split(",").map((word) => (word.startWith("#") ? word :`#${word}`)),
-    });
+      hashtags,
+    })
     return res.redirect("/");
   } catch(error) {
     console.log(error);
