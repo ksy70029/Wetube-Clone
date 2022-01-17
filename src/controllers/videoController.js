@@ -12,9 +12,10 @@ console.log("finished")
 */
 
 export const home = async(req, res) => {
-  const videos = await Video.find({});
+  const videos = await Video.find({}).sort({createdAt:"asc"});
   return res.render("home", {pageTitle:"Home", videos });
 };
+
 export const see = async (req, res) => {
   const {id} = req.params;
   const video = await Video.findById(id);
@@ -70,6 +71,13 @@ export const postUpload = async (req, res) => {
 export const deleteVideo = async(req, res) => {
   const { id } = req.params;
   await Video.findByIdAndDelete(id);
-  // delete video
   return res.redirect("/");
+};
+
+export const search = (req, res) => {
+  const { keyword } = req.query;
+  if (keyword){
+    // search
+  }
+  return res.render("search", {pageTitle:"Search"});
 }
