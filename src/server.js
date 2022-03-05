@@ -13,13 +13,25 @@ app.set("views", process.cwd()+ "/src/views");
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 
-app.use
-  (session({
+app.use(
+  session({
     secret: "Hello!",
     resave: true,
     saveUninitialized: true,
   })
 );
+
+app.use((req, res, next) => {
+  req.sessionStore.all((error, sessions) => {
+    console.log(session);
+    next();
+  });
+});
+
+app.get("/add-one", (req, res, next) =>{
+  req.session.potato += 1;
+  return res.send(`${req.session.id}\n${req.session.potato}`);
+})
 
 app.use("/", rootRouter);
 app.use("/users", userRouter);
